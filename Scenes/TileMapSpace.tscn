@@ -689,5 +689,5 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 2
 sources/0 = SubResource("TileSetAtlasSource_xufau")
 
-[node name="TileMapLayer" type="TileMapLayer"]
+[node name="TileMapLayer" type="TileMapLayer" groups=["Terrain"]]
 tile_set = SubResource("TileSet_u33kl")

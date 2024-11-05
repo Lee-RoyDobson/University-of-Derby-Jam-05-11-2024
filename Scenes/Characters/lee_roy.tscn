@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/Characters/lee_roy.gd" id="1_fkp4l"]
 [ext_resource type="Texture2D" uid="uid://bwlyyvi2vtxqg" path="res://Aseprite/PlayerSprites.png" id="2_iw4h7"]
+[ext_resource type="AudioStream" uid="uid://coj2svfy3egih" path="res://Assets/Pew.mp3" id="3_usexv"]
+[ext_resource type="AudioStream" uid="uid://jqsy6laqvmsv" path="res://Assets/Boing.mp3" id="4_addfm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tjip2"]
 atlas = ExtResource("2_iw4h7")
@@ -26,14 +28,6 @@ region = Rect2(512, 128, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_4cqfy"]
 atlas = ExtResource("2_iw4h7")
 region = Rect2(768, 128, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4k0ej"]
-atlas = ExtResource("2_iw4h7")
-region = Rect2(0, 256, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kx0ee"]
-atlas = ExtResource("2_iw4h7")
-region = Rect2(128, 256, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1tucb"]
 atlas = ExtResource("2_iw4h7")
@@ -98,12 +92,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4k0ej")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kx0ee")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_1tucb")
 }, {
 "duration": 1.0,
@@ -146,6 +134,7 @@ height = 92.0
 
 [node name="Lee-Roy" type="CharacterBody2D"]
 collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_fkp4l")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -160,3 +149,12 @@ position = Vector2(0, -46)
 shape = SubResource("CapsuleShape2D_itq76")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+limit_smoothed = true
+
+[node name="Bullets" type="Node" parent="."]
+
+[node name="Pew" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_usexv")
+
+[node name="Boing" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_addfm")
