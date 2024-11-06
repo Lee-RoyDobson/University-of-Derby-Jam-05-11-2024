@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://capwypxiyleao"]
+[gd_scene load_steps=3 format=3 uid="uid://capwypxiyleao"]
 
 [ext_resource type="Script" path="res://Scripts/game_over.gd" id="1_lo413"]
+[ext_resource type="Texture2D" uid="uid://cefepkexv2f0w" path="res://Assets/Lee-Roy Ded.png" id="2_csed8"]
 
 [node name="Game Over" type="Control"]
 layout_mode = 3
@@ -34,11 +35,16 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -147.5
-offset_top = -168.0
-offset_right = 147.5
+offset_left = -486.0
+offset_top = -169.0
+offset_right = -191.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "MENU"
+
+[node name="Lee-royDed" type="Sprite2D" parent="."]
+position = Vector2(818, 546)
+texture = ExtResource("2_csed8")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

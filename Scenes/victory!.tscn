@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://lcn4balk1o6c"]
+[gd_scene load_steps=3 format=3 uid="uid://lcn4balk1o6c"]
 
 [ext_resource type="Script" path="res://Scenes/victory!.gd" id="1_cwfyn"]
+[ext_resource type="Texture2D" uid="uid://dy4giuqor0jbi" path="res://Assets/look.png" id="2_ba7ie"]
 
 [node name="Victory!" type="Control"]
 layout_mode = 3
@@ -13,17 +14,13 @@ script = ExtResource("1_cwfyn")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
+offset_left = -140.5
+offset_right = 140.5
+offset_bottom = 83.0
 grow_horizontal = 2
-grow_vertical = 2
 theme_override_font_sizes/font_size = 60
 text = "YOU WIN!"
 
@@ -58,5 +55,9 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 40
 text = "MENU"
+
+[node name="Look" type="Sprite2D" parent="."]
+position = Vector2(920, 348)
+texture = ExtResource("2_ba7ie")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
