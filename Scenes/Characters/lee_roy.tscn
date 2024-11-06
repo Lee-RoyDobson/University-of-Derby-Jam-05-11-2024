@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d3k3uqtl3xxwa"]
+[gd_scene load_steps=30 format=3 uid="uid://d3k3uqtl3xxwa"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/lee_roy.gd" id="1_fkp4l"]
 [ext_resource type="Texture2D" uid="uid://bwlyyvi2vtxqg" path="res://Aseprite/PlayerSprites.png" id="2_iw4h7"]
@@ -65,6 +65,38 @@ region = Rect2(384, 0, 128, 128)
 atlas = ExtResource("2_iw4h7")
 region = Rect2(512, 0, 128, 128)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ca0x2"]
+atlas = ExtResource("2_iw4h7")
+region = Rect2(0, 512, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hew6j"]
+atlas = ExtResource("2_iw4h7")
+region = Rect2(128, 512, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxdf7"]
+atlas = ExtResource("2_iw4h7")
+region = Rect2(256, 512, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cafp2"]
+atlas = ExtResource("2_iw4h7")
+region = Rect2(384, 512, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m3b5o"]
+atlas = ExtResource("2_iw4h7")
+region = Rect2(512, 512, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57iik"]
+atlas = ExtResource("2_iw4h7")
+region = Rect2(640, 512, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3pjyc"]
+atlas = ExtResource("2_iw4h7")
+region = Rect2(768, 512, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxiuf"]
+atlas = ExtResource("2_iw4h7")
+region = Rect2(896, 512, 128, 128)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_ntoqx"]
 animations = [{
 "frames": [{
@@ -86,7 +118,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4cqfy")
 }],
-"loop": true,
+"loop": false,
 "name": &"Idle",
 "speed": 6.0
 }, {
@@ -123,8 +155,37 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8ql2c")
 }],
-"loop": true,
+"loop": false,
 "name": &"Run",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 0.3,
+"texture": SubResource("AtlasTexture_ca0x2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hew6j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxdf7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cafp2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m3b5o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_57iik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3pjyc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxiuf")
+}],
+"loop": false,
+"name": &"Shoot",
 "speed": 6.0
 }]
 
@@ -141,7 +202,7 @@ script = ExtResource("1_fkp4l")
 position = Vector2(-2, -48)
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_ntoqx")
-animation = &"Jump"
+animation = &"Idle"
 autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -158,3 +219,29 @@ stream = ExtResource("3_usexv")
 
 [node name="Boing" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_addfm")
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="ShootCooldown" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="IFrames" type="Timer" parent="."]
+one_shot = true
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -49.0
+offset_top = -116.0
+offset_right = 51.0
+offset_bottom = -106.0
+max_value = 3.0
+step = 1.0
+value = 3.0
+show_percentage = false
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="ShootCooldown" to="." method="_on_shoot_cooldown_timeout"]
+[connection signal="timeout" from="IFrames" to="." method="_on_i_frames_timeout"]
